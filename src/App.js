@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Box } from '@mui/system'
+import ColorModeButton from './components/ColorModeButton'
+import TestPage from './components/TestPage'
+import useCustomizedTheme from './hooks/useCustomizedTheme'
 
-function App() {
+const App = () => {
+  const { CustomizedThemeProvider } = useCustomizedTheme()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <CustomizedThemeProvider>
+      <Box
+        sx={{
+          display: 'flex',
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: 'background.default',
+          color: 'text.primary',
+          borderRadius: 1,
+          p: 3,
+        }}
+      >
+        <ColorModeButton />
+        <TestPage />
+      </Box>
+    </CustomizedThemeProvider>
+  )
 }
 
-export default App;
+export default App
